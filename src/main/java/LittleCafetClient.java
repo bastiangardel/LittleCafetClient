@@ -12,7 +12,7 @@ public class LittleCafetClient extends Application {
 
     public static void main(String[] args) { launch(args); }
     @Override public void start(Stage stage) throws IOException {
-        Scene scene = new Scene(new StackPane());
+        Scene scene = new Scene(new StackPane(),800, 600);
 
         LoginManager loginManager = new LoginManager(scene);
         loginManager.showLoginScreen();
