@@ -1,41 +1,68 @@
-import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.*;
+package tools;
+
+import javafx.scene.control.Alert;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
-import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
-import login.LoginManager;
+import org.jdom2.Document;
+import org.jdom2.Element;
 import org.jdom2.JDOMException;
-import tools.ConfigLoader;
+import org.jdom2.input.SAXBuilder;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
-import java.util.Optional;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
 
-public class LittleCafetClient extends Application {
+/**
+ * Created by bastiangardel on 18.07.17.
+ */
+public class ConfigLoader {
 
+    private HashMap<String,String> config;
 
-    public static void main(String[] args) { launch(args); }
-    @Override public void start(Stage stage) throws IOException {
-        Scene scene = new Scene(new ScrollPane(),800, 600);
+    private static ConfigLoader ourInstance;
 
+    public static ConfigLoader getInstance(){
 
-        LoginManager loginManager = new LoginManager(scene);
-        loginManager.showLoginScreen();
+        if (ourInstance == null)
+            ourInstance = new ConfigLoader();
 
-        stage.setScene(scene);
-        stage.show();
+        return ourInstance;
+    }
+
+    public HashMap<String, String> getConfig() {
+        return config;
+    }
+
+    private ConfigLoader() {
+
+        config = new HashMap<>();
+
+        SAXBuilder sxb = new SAXBuilder();
+
 
 
         try {
-            ConfigLoader.getInstance();
+            Document document = sxb.build(new File("configfile"));
+
+            Element racine = document.getRootElement();
+
+            List listconfig = racine.getChildren("config");
+
+            Iterator i = listconfig.iterator();
+
+            while(i.hasNext()) {
+                Element courant = (Element) i.next();
+
+                config.put(courant.getName(), courant.getChild(courant.getName()).getText());
+
+            }
+
         } catch (JDOMException  | IOException e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("!! Error !!");
@@ -72,5 +99,7 @@ public class LittleCafetClient extends Application {
             System.exit(1);
         }
 
+
     }
+
 }
