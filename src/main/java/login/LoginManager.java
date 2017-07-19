@@ -10,6 +10,7 @@ import controller.LoginController;
 import controller.MainViewController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.*;
+import restclient.core.Session;
 
 /** Manages control flow for logins */
 public class LoginManager {
@@ -32,6 +33,9 @@ public class LoginManager {
      * Will show the login application screen.
      */
     public void logout() {
+
+        Session.getInstance().logout();
+
         showLoginScreen();
     }
 

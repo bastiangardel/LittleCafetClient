@@ -467,6 +467,7 @@ VBox > .split-menu-button.last > .arrow-button {
 }
 .tab-pane > .tab-content-area {
 	-fx-background-color: white;
+	-fx-background-image: url("background.jpg");
 }
 
 .tab-pane .tab-header-area .tab .tab-label {

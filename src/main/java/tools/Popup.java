@@ -12,9 +12,9 @@ import java.io.StringWriter;
 /**
  * Created by bastiangardel on 19.07.17.
  */
-public class ErrorAlert {
+public class Popup {
 
-    static public void showAlert(String title, String header, Exception e){
+    static public void showErrorAlert(String title, String header, Exception e){
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle(title);
         alert.setHeaderText(header);
@@ -45,6 +45,14 @@ public class ErrorAlert {
 
         alert.getDialogPane().setExpandableContent(expContent);
 
+        alert.showAndWait();
+    }
+
+    static public void showAlert(Alert.AlertType type, String title, String header, String content){
+        Alert alert = new Alert(type);
+        alert.setTitle(title);
+        alert.setHeaderText(header);
+        alert.setContentText(content);
         alert.showAndWait();
     }
 }

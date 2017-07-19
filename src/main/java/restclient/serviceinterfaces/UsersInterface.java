@@ -1,5 +1,6 @@
 package restclient.serviceinterfaces;
 
+import restclient.core.Session;
 import restclient.dto.CredentialDTO;
 
 import javax.ws.rs.*;
@@ -20,7 +21,7 @@ public interface UsersInterface {
 
     @POST
     @Path("/logout")
-    void logout();
+    Response logout();
 
 
 }

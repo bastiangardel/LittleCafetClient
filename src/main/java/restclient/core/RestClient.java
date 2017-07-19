@@ -35,4 +35,8 @@ public class RestClient {
     public ResteasyWebTarget getTarget() {
         return target;
     }
+
+    public ResteasyClient getClient() {
+        return client;
+    }
 }

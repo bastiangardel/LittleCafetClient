@@ -1,10 +1,5 @@
 package tools;
 
-import javafx.scene.control.Alert;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Priority;
 import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.JDOMException;
@@ -12,8 +7,6 @@ import org.jdom2.input.SAXBuilder;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.io.StringWriter;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -48,7 +41,7 @@ public class ConfigLoader {
 
 
         try {
-            Document document = sxb.build(new File("configfil.xml"));
+            Document document = sxb.build(new File("configfile.xml"));
 
             Element racine = document.getRootElement();
 
@@ -65,7 +58,7 @@ public class ConfigLoader {
 
         } catch (JDOMException  | IOException e) {
 
-            ErrorAlert.showAlert("!! Error !!","Loading Config Error", e);
+            Popup.showErrorAlert("!! Error !!","Loading Config Error", e);
 
             System.exit(1);
         }

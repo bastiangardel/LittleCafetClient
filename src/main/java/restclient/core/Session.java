@@ -1,6 +1,13 @@
 package restclient.core;
 
+import javafx.scene.control.Alert;
+import org.jboss.resteasy.client.jaxrs.ProxyBuilder;
+import restclient.dto.CredentialDTO;
+import restclient.serviceinterfaces.UsersInterface;
+import tools.Popup;
+
 import javax.ws.rs.core.NewCookie;
+import javax.ws.rs.core.Response;
 import java.util.Map;
 
 /**
@@ -28,11 +35,96 @@ public class Session {
         return cookies;
     }
 
-    public void open(Map<String, NewCookie> cookies){
+/*    public void open(Map<String, NewCookie> cookies){
         this.cookies = cookies;
     }
 
     public void close(){
         cookies = null;
+    }*/
+
+    public Boolean login (String username, String password){
+
+        int status = 0;
+
+        UsersInterface proxy = RestClient.getInstance().getTarget().proxy(UsersInterface.class);
+
+        CredentialDTO credentialDTO = new CredentialDTO();
+        credentialDTO.setUsername(username);
+        credentialDTO.setPassword(password);
+
+        try{
+            Response response = proxy.authenticate(credentialDTO);
+
+            status = response.getStatus();
+
+            System.out.println("HTTP code: " + status);
+
+           cookies = response.getCookies();
+
+            switch (status){
+                case 200: break;
+                case 401:
+                    Popup.showAlert(Alert.AlertType.INFORMATION,
+                            "!! Access Deny!!",
+                            Integer.toString(status),
+                            response.getStatusInfo().getReasonPhrase());
+                    break;
+                default:
+                    Popup.showAlert(Alert.AlertType.ERROR,
+                            "!! Authentication Failure!!",
+                            Integer.toString(status),
+                            response.getStatusInfo().getReasonPhrase());
+
+            }
+
+            response.close();
+
+        } catch (Exception e)
+        {
+            Popup.showErrorAlert("!! Error !!","Authentication Error", e);
+        }
+
+        return status == 200;
+    }
+
+    public void logout (){
+
+        int status = 0;
+
+        RestClient.getInstance().getClient().register(new CookieClientRequestFilter(cookies.get("JSESSIONID")));
+        UsersInterface proxy = RestClient.getInstance().getTarget().proxy(UsersInterface.class);
+
+        try{
+            Response response = proxy.logout();
+
+            status = response.getStatus();
+
+            System.out.println("HTTP code: " + status);
+
+
+            switch (status){
+                case 200: break;
+                case 401:
+                    Popup.showAlert(Alert.AlertType.INFORMATION,
+                            "!! Logout Deny!!",
+                            Integer.toString(status),
+                            "Already logout");
+                    break;
+                default:
+                    Popup.showAlert(Alert.AlertType.ERROR,
+                            "!! Logout Failure!!",
+                            Integer.toString(status),
+                            response.getStatusInfo().getReasonPhrase());
+
+            }
+
+            response.close();
+
+        } catch (Exception e)
+        {
+            Popup.showErrorAlert("!! Error !!","Logout Error", e);
+        }
+
     }
 }
