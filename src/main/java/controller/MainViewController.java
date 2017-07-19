@@ -15,8 +15,7 @@ public class MainViewController {
 
     public void initialize() {}
 
-    public void initSessionID(final LoginManager loginManager, String sessionID) {
-        //sessionLabel.setText(sessionID);
+    public void initView(final LoginManager loginManager) {
         logoutButton.setOnAction(event -> loginManager.logout());
     }
 }

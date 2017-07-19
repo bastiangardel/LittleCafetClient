@@ -1,6 +1,6 @@
-package RestClient.serviceinterfaces;
+package restclient.serviceinterfaces;
 
-import RestClient.dto.CredentialDTO;
+import restclient.dto.CredentialDTO;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -10,16 +10,16 @@ import javax.ws.rs.core.Response;
  * Created by bastiangardel on 18.07.17.
  */
 @Path("/users")
-public interface usersClient {
+public interface UsersInterface {
 
     @POST
     @Path("/auth")
     @Consumes({ MediaType.APPLICATION_JSON })
-    void authenticate(CredentialDTO credentials);
+    Response authenticate(CredentialDTO credentials);
 
 
     @POST
-    @Path("/auth")
+    @Path("/logout")
     void logout();
 
 

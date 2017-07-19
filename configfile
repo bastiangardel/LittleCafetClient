@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8" ?>
-
-<configurations>
-    <configuration>
-    <restapiurl>https://127.0.0.1:9000/</restapiurl>
-    </configuration>
-</configurations>

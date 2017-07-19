@@ -29,12 +29,12 @@
                         <Font size="23.0" />
                      </font>
                   </Label>
-                          <TextField fx:id="user" prefHeight="48.0" prefWidth="211.0" promptText="Use &quot;open&quot; to login" text="open" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                          <TextField fx:id="user" prefHeight="48.0" prefWidth="211.0"   GridPane.columnIndex="1" GridPane.rowIndex="0">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </TextField>
-                          <PasswordField fx:id="password" prefHeight="44.0" prefWidth="211.0" promptText="Use &quot;sesame&quot; to login" text="sesame" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                          <PasswordField fx:id="password" prefHeight="44.0" prefWidth="211.0"   GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <font>
                         <Font size="20.0" />
                      </font>

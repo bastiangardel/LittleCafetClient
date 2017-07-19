@@ -1,5 +1,7 @@
-package RestClient.dto;
+package restclient.dto;
 
+
+import java.io.Serializable;
 
 /**
  * Created by bastiangardel on 17.05.16.
@@ -21,7 +23,7 @@ package RestClient.dto;
  * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-public class CredentialDTO {
+public class CredentialDTO implements Serializable{
     private String username;
     private String password;
 

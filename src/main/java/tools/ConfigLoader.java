@@ -48,53 +48,24 @@ public class ConfigLoader {
 
 
         try {
-            Document document = sxb.build(new File("configfile"));
+            Document document = sxb.build(new File("configfil.xml"));
 
             Element racine = document.getRootElement();
 
-            List listconfig = racine.getChildren("config");
+            List listconfig = racine.getChildren();
 
             Iterator i = listconfig.iterator();
 
             while(i.hasNext()) {
                 Element courant = (Element) i.next();
 
-                config.put(courant.getName(), courant.getChild(courant.getName()).getText());
+                config.put(courant.getName(), courant.getText());
 
             }
 
         } catch (JDOMException  | IOException e) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("!! Error !!");
-            alert.setHeaderText("Loading Config Error");
-            alert.setContentText(e.getMessage());
 
-
-            // Create expandable Exception.
-            StringWriter sw = new StringWriter();
-            PrintWriter pw = new PrintWriter(sw);
-            e.printStackTrace(pw);
-            String exceptionText = sw.toString();
-
-            Label label = new Label("The exception stacktrace was:");
-
-            TextArea textArea = new TextArea(exceptionText);
-            textArea.setEditable(false);
-            textArea.setWrapText(true);
-
-            textArea.setMaxWidth(Double.MAX_VALUE);
-            textArea.setMaxHeight(Double.MAX_VALUE);
-            GridPane.setVgrow(textArea, Priority.ALWAYS);
-            GridPane.setHgrow(textArea, Priority.ALWAYS);
-
-            GridPane expContent = new GridPane();
-            expContent.setMaxWidth(Double.MAX_VALUE);
-            expContent.add(label, 0, 0);
-            expContent.add(textArea, 0, 1);
-
-            alert.getDialogPane().setExpandableContent(expContent);
-
-            alert.showAndWait();
+            ErrorAlert.showAlert("!! Error !!","Loading Config Error", e);
 
             System.exit(1);
         }
