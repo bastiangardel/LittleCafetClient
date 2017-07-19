@@ -1,17 +1,10 @@
 package controller;
 
-import restclient.core.RestClient;
-import restclient.core.Session;
-import restclient.dto.CredentialDTO;
-import restclient.serviceinterfaces.UsersInterface;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import login.LoginManager;
-import tools.Popup;
-
-import javax.ws.rs.core.NewCookie;
-import javax.ws.rs.core.Response;
-import java.util.Map;
+import restclient.core.Session;
 
 
 /** Controls the login screen */

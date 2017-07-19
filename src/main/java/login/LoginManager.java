@@ -3,14 +3,16 @@ package login;
 /**
  * Created by bastiangardel on 17.07.17.
  */
-import java.io.IOException;
-import java.util.logging.*;
 
 import controller.LoginController;
 import controller.MainViewController;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.*;
+import javafx.scene.Scene;
 import restclient.core.Session;
+
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /** Manages control flow for logins */
 public class LoginManager {
@@ -33,9 +35,7 @@ public class LoginManager {
      * Will show the login application screen.
      */
     public void logout() {
-
         Session.getInstance().logout();
-
         showLoginScreen();
     }
 

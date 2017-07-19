@@ -1,7 +1,6 @@
 package restclient.core;
 
 import javafx.scene.control.Alert;
-import org.jboss.resteasy.client.jaxrs.ProxyBuilder;
 import restclient.dto.CredentialDTO;
 import restclient.serviceinterfaces.UsersInterface;
 import tools.Popup;
@@ -34,14 +33,6 @@ public class Session {
     public Map<String, NewCookie> getCookies() {
         return cookies;
     }
-
-/*    public void open(Map<String, NewCookie> cookies){
-        this.cookies = cookies;
-    }
-
-    public void close(){
-        cookies = null;
-    }*/
 
     public Boolean login (String username, String password){
 
@@ -101,7 +92,6 @@ public class Session {
             status = response.getStatus();
 
             System.out.println("HTTP code: " + status);
-
 
             switch (status){
                 case 200: break;
