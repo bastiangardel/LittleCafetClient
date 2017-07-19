@@ -18,5 +18,8 @@ public class MainViewController {
 
     public void initView(final LoginManager loginManager) {
         logoutButton.setOnAction(event -> loginManager.logout());
+
+
+
     }
 }

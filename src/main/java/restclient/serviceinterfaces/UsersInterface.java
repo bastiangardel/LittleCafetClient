@@ -1,10 +1,9 @@
 package restclient.serviceinterfaces;
 
 import restclient.dto.CredentialDTO;
+import restclient.dto.UserInfoDTO;
 
-import javax.ws.rs.Consumes;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
@@ -23,6 +22,11 @@ public interface UsersInterface {
     @POST
     @Path("/logout")
     Response logout();
+
+    @GET
+    @Path("/info")
+    @Produces({ MediaType.APPLICATION_JSON })
+    UserInfoDTO getInfo();
 
 
 }

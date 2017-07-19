@@ -443,10 +443,17 @@ VBox > .split-menu-button.last > .arrow-button {
 	-fx-border-color: transparent;
 	-fx-padding: 3 10 5 10;
 	-fx-background-insets: 0;
+    -fx-pref-height: 50;
 }
+
+
 
 .tab-pane .tab-header-area .tab .tab-label {
 	-fx-text-fill: #0088cc;
+    -fx-font-size: 25;
+    -fx-alignment: CENTER;
+    -fx-padding:-3px 0px -3px 0;
+
 }
 
 .tab-pane .tab-header-area .tab:hover {
@@ -575,6 +582,12 @@ VBox > .split-menu-button.last > .arrow-button {
 .menu-bar {
 	-fx-background-color: white;
 }
+
+.menu-bar .label {
+    -fx-font-size: 25 pt;
+
+}
+
 .menu-bar > .container > .menu-button {
 	-fx-background-radius: 0;
 	-fx-background-insets: 0;
