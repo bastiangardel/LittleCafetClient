@@ -30,6 +30,7 @@ public class RestClient {
 
         client = new ResteasyClientBuilder().build();
         target = client.target(UriBuilder.fromPath(ConfigLoader.getInstance().getConfig().get("restapiurl")));
+
     }
 
     public ResteasyWebTarget getTarget() {

@@ -35,8 +35,7 @@ public class LoginManager {
      * Will show the login application screen.
      */
     public void logout() {
-        Session.getInstance().logout();
-        showLoginScreen();
+        if(Session.getInstance().logout()) showLoginScreen();
     }
 
     public void showLoginScreen() {

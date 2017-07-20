@@ -4,6 +4,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.ProgressIndicator?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -14,11 +15,12 @@
 
 <AnchorPane prefHeight="535.0" prefWidth="594.0" stylesheets="@loginview.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LoginController">
    <children>
-          <VBox alignment="CENTER" prefHeight="535.0" prefWidth="594.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+          <VBox alignment="CENTER" prefHeight="535.0" prefWidth="594.0" spacing="40.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
               <children>
             <Label fx:id="welcome" styleClass="welcome-text" text="Welcome to LittleCafet">
             </Label>
-                  <GridPane alignment="CENTER" hgap="50.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="200.0" prefWidth="500.0" vgap="50.0">
+            <ProgressIndicator fx:id="loading" maxHeight="200.0" maxWidth="200.0" minHeight="30.0" minWidth="30.0" prefHeight="150.0" prefWidth="150.0" visible="false" />
+                  <GridPane alignment="CENTER" hgap="50.0" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minHeight="100.0" prefHeight="200.0" prefWidth="500.0" vgap="30.0">
                       <children>
                           <Label text="Username:" GridPane.columnIndex="0" GridPane.rowIndex="0">
                      <font>
@@ -50,13 +52,19 @@
                           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                       </rowConstraints>
                <VBox.margin>
-                  <Insets bottom="50.0" top="100.0" />
+                  <Insets bottom="50.0" top="50.0" />
                </VBox.margin>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
                   </GridPane>
                     <Button fx:id="loginButton" alignment="CENTER" contentDisplay="CENTER" defaultButton="true" minHeight="50.0" mnemonicParsing="false" prefHeight="78.0" prefWidth="272.0" styleClass="primary" text="LOGIN" textAlignment="CENTER">
                <font>
                   <Font size="34.0" />
                </font>
+               <VBox.margin>
+                  <Insets bottom="40.0" />
+               </VBox.margin>
 
             </Button>
               </children>

@@ -1,7 +1,19 @@
 .root {
 	-fx-body-color : #F5F5F5;
 	-fx-outer-border : #cecece;
+    -fx-background-image: url("background.jpg");
 }
+
+
+.borderpane{
+    -fx-background-color: transparent;
+}
+
+.progress-indicator{
+    -fx-background-color: transparent;
+}
+
+
 .button:focused, .toggle-button:focused,
 .split-menu-button:focused, .menu-button:focused,
 .number-button:focused,
@@ -713,11 +725,10 @@ VBox > .split-menu-button.last > .arrow-button {
 }
 
 .titled-pane > .content {
-	-fx-background-color: white;
-	-fx-background-radius: 0 0 4 4;
-	-fx-border-radius: 0 0 4 4;
-	-fx-border-color: #dddddd;
-	/*-fx-padding: -11;*/
+-fx-background-color: transparent;
+    /*		-fx-background-radius: 0 0 4 4;
+        -fx-border-radius: 0 0 4 4;*/
+	-fx-border-color: transparent;
 }
 
 .titled-pane.primary {

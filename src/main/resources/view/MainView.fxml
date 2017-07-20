@@ -1,18 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Accordion?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.Pagination?>
+<?import javafx.scene.control.ProgressIndicator?>
+<?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
-<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.control.TreeView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane stylesheets="@mainview.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainViewController">
@@ -33,106 +35,59 @@
             </MenuBar>
          </top>
          <center>
-            <TabPane prefHeight="234.0" prefWidth="738.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
-              <tabs>
-                  <Tab text="Buy">
-                     <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="194.0" prefWidth="600.0" />
-                     </content>
-                  </Tab>
-                <Tab text="User Info">
-                  <content>
-                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="194.0" prefWidth="600.0">
+            <SplitPane dividerPositions="0.8505747126436781" BorderPane.alignment="CENTER">
+               <items>
+                  <TabPane prefHeight="234.0" prefWidth="738.0" tabClosingPolicy="UNAVAILABLE">
+                    <tabs>
+                        <Tab text="Buy">
+                           <content>
+                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="194.0" prefWidth="600.0" />
+                           </content>
+                        </Tab>
+                      <Tab text="History">
+                        <content>
+                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <BorderPane layoutX="206.0" layoutY="216.0" prefHeight="474.0" prefWidth="698.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <bottom>
+                                          <Pagination pageCount="5" prefHeight="62.0" prefWidth="698.0" BorderPane.alignment="CENTER" />
+                                       </bottom>
+                                       <center>
+                                          <ListView prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+                                       </center>
+                                    </BorderPane>
+                                 </children>
+                              </AnchorPane>
+                        </content>
+                      </Tab>
+                    </tabs>
+                  </TabPane>
+                  <BorderPane minWidth="150.0">
+                     <top>
+                        <AnchorPane BorderPane.alignment="CENTER">
                            <children>
-                              <Accordion layoutX="147.0" layoutY="173.0" prefHeight="474.0" prefWidth="698.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                <panes>
-                                  <TitledPane animated="false" text="Balance">
-                                    <content>
-                                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                             <children>
-                                                <Label alignment="CENTER" layoutX="10.399999618530273" layoutY="10.399999618530273" prefHeight="309.0" prefWidth="696.0" text="--" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                                   <font>
-                                                      <Font size="96.0" />
-                                                   </font>
-                                                </Label>
-                                             </children>
-                                          </AnchorPane>
-                                    </content>
-                                       <font>
-                                          <Font size="25.0" />
-                                       </font>
-                                  </TitledPane>
-                                  <TitledPane animated="false" text="Firstname">
-                                    <content>
-                                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                             <children>
-                                                <Label alignment="CENTER" prefHeight="293.0" prefWidth="696.0" text="--" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                                   <font>
-                                                      <Font size="96.0" />
-                                                   </font>
-                                                </Label>
-                                             </children>
-                                          </AnchorPane>
-                                    </content>
-                                       <font>
-                                          <Font size="25.0" />
-                                       </font>
-                                  </TitledPane>
-                                  <TitledPane animated="false" text="Lastname">
-                                    <content>
-                                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                             <children>
-                                                <Label alignment="CENTER" prefHeight="293.0" prefWidth="696.0" text="--" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                                   <font>
-                                                      <Font size="96.0" />
-                                                   </font>
-                                                </Label>
-                                             </children>
-                                          </AnchorPane>
-                                    </content>
-                                       <font>
-                                          <Font size="25.0" />
-                                       </font>
-                                  </TitledPane>
-                                    <TitledPane animated="false" layoutX="10.0" layoutY="92.0" text="Email">
-                                       <content>
-                                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                             <children>
-                                                <Label alignment="CENTER" prefHeight="293.0" prefWidth="696.0" text="--" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                                   <font>
-                                                      <Font size="96.0" />
-                                                   </font>
-                                                </Label>
-                                             </children>
-                                          </AnchorPane>
-                                       </content>
-                                       <font>
-                                          <Font size="25.0" />
-                                       </font>
-                                    </TitledPane>
-                                </panes>
-                              </Accordion>
-                           </children></AnchorPane>
-                  </content>
-                </Tab>
-                <Tab text="History">
-                  <content>
-                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                           <children>
-                              <BorderPane layoutX="206.0" layoutY="216.0" prefHeight="474.0" prefWidth="698.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                 <bottom>
-                                    <Pagination pageCount="5" prefHeight="62.0" prefWidth="698.0" BorderPane.alignment="CENTER" />
-                                 </bottom>
-                                 <center>
-                                    <ListView prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
-                                 </center>
-                              </BorderPane>
-                           </children></AnchorPane>
-                  </content>
-                </Tab>
-              </tabs>
-            </TabPane>
+                              <Label alignment="TOP_CENTER" prefHeight="30.0" prefWidth="150.0" text="CHF 100.-" textFill="#e80505" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <font>
+                                    <Font size="25.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                     </top>
+                     <center>
+                        <TreeView fixedCellSize="4.0" prefHeight="200.0" prefWidth="172.0" BorderPane.alignment="CENTER" />
+                     </center>
+                  </BorderPane>
+               </items>
+            </SplitPane>
          </center>
+         <bottom>
+            <VBox BorderPane.alignment="CENTER">
+               <children>
+                  <ProgressIndicator visible="false" />
+               </children>
+            </VBox>
+         </bottom>
       </BorderPane>
    </children>
 </AnchorPane>

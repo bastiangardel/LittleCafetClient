@@ -5,7 +5,7 @@
 }
 
 #welcome {
-    -fx-font-size: 60px;
+    -fx-font-size: 70px;
     -fx-font-family: "Arial Black";
     -fx-text-fill: #818181;
     -fx-effect: innershadow( three-pass-box , rgba(0,0,0,0.7) , 6, 0.0 , 0 , 2 );
@@ -235,6 +235,7 @@ VBox > .split-menu-button.last > .arrow-button {
 .split-menu-button.primary > .label,.split-menu-button.primary > .arrow-button {
     -fx-border-color: #0062b8 #0062b8 #005299 #0062b8;
     -fx-text-fill: white;
+    -fx-font-size: 20;
 }
 /*hover state*/
 .button.primary:hover,.menu-button.primary:hover,.toggle-button.primary:hover,
@@ -433,11 +434,11 @@ VBox > .split-menu-button.last > .arrow-button {
 }
 
 .text-field, .text-area {
-    -fx-border-color: #cccccc;
-    -fx-background-color: white;
+    -fx-border-color: black;
+    -fx-background-color: gray;
     -fx-border-radius: 4;
     -fx-background-radius: 4;
-    -fx-effect: innershadow(gaussian, transparent, 0, 0, 0, 0);
+    -fx-effect: innershadow( three-pass-box , rgba(0,0,0,0.7) , 6, 0.0 , 0 , 2 );
 }
 
 .text-field:focused, .text-area:focused {

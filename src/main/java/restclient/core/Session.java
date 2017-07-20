@@ -1,5 +1,6 @@
 package restclient.core;
 
+import javafx.application.Platform;
 import javafx.scene.control.Alert;
 import restclient.dto.CredentialDTO;
 import restclient.serviceinterfaces.UsersInterface;
@@ -38,6 +39,7 @@ public class Session {
 
         int status = 0;
 
+
         UsersInterface proxy = RestClient.getInstance().getTarget().proxy(UsersInterface.class);
 
         CredentialDTO credentialDTO = new CredentialDTO();
@@ -73,48 +75,65 @@ public class Session {
 
         } catch (Exception e)
         {
-            Popup.showErrorAlert("!! Error !!","Authentication Error", e);
+
+            Platform.runLater(() -> Popup.showErrorAlert("!! Error !!","Authentication Error", e));
+
         }
 
         return status == 200;
     }
 
-    public void logout (){
+    public Boolean logout (){
 
         int status = 0;
 
-        RestClient.getInstance().getClient().register(new CookieClientRequestFilter(cookies.get("JSESSIONID")));
-        UsersInterface proxy = RestClient.getInstance().getTarget().proxy(UsersInterface.class);
+        if(cookies != null) {
 
-        try{
-            Response response = proxy.logout();
+            RestClient.getInstance().getClient().register(new CookieClientRequestFilter(cookies.get("JSESSIONID")));
+            UsersInterface proxy = RestClient.getInstance().getTarget().proxy(UsersInterface.class);
 
-            status = response.getStatus();
+            try{
+                Response response = proxy.logout();
 
-            System.out.println("HTTP code: " + status);
+                status = response.getStatus();
 
-            switch (status){
-                case 200: break;
-                case 401:
-                    Popup.showAlert(Alert.AlertType.INFORMATION,
-                            "!! Logout Deny!!",
-                            Integer.toString(status),
-                            "Already logout");
-                    break;
-                default:
-                    Popup.showAlert(Alert.AlertType.ERROR,
-                            "!! Logout Failure!!",
-                            Integer.toString(status),
-                            response.getStatusInfo().getReasonPhrase());
+                System.out.println("HTTP code: " + status);
 
+                switch (status){
+                    case 200: break;
+                    case 401:
+                        Popup.showAlert(Alert.AlertType.INFORMATION,
+                                "!! Logout Deny!!",
+                                Integer.toString(status),
+                                "Already logout");
+                        break;
+                    default:
+                        Popup.showAlert(Alert.AlertType.ERROR,
+                                "!! Logout Failure!!",
+                                Integer.toString(status),
+                                response.getStatusInfo().getReasonPhrase());
+
+                }
+
+                response.close();
+
+
+                cookies = null;
+
+            } catch (Exception e)
+            {
+
+
+                Popup.showErrorAlert("!! Error !!","Logout Error", e);
             }
 
-            response.close();
-
-        } catch (Exception e)
+        }
+        else
         {
-            Popup.showErrorAlert("!! Error !!","Logout Error", e);
+            status = 200;
         }
 
+
+        return status == 200;
     }
 }
