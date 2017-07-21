@@ -6,9 +6,7 @@ package controller;
 
 import javafx.application.Platform;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.Tab;
+import javafx.scene.control.*;
 import login.LoginManager;
 import restclient.core.CookieClientRequestFilter;
 import restclient.core.RestClient;
@@ -21,6 +19,8 @@ public class MainViewController {
 
     @FXML private MenuItem logoutButton;
 
+    @FXML private TreeView<String> infostree;
+
 
 
     public void initialize() {}
@@ -28,6 +28,15 @@ public class MainViewController {
     public void initView(final LoginManager loginManager) {
         logoutButton.setOnAction(event -> loginManager.logout());
 
+        TreeItem<String> rootItem = new TreeItem<String> ("Name");
+        TreeItem<String> rootItem2 = new TreeItem<String> ("Bastian Gardel");
+
+        rootItem.getChildren().add(rootItem2);
+
+        rootItem.setExpanded(true);
+
+
+        infostree.setRoot(rootItem);
 
 /*        infoTab.setOnSelectionChanged(event -> {
 
