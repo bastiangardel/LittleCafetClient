@@ -4,6 +4,20 @@
     -fx-background-image: url("background.jpg");
 }
 
+.cache-list-name {
+    -fx-font-size: 1.2em;
+    -fx-font-weight: bold;
+}
+
+.cache-list-icon {
+    -fx-text-fill: #444444;
+    -fx-effect: dropshadow( three-pass-box, rgba(0,0,0,0.4), 3, 0.0, 1, 1);
+}
+
+.cache-list-found .cache-list-icon {
+    -fx-text-fill: #669900;
+}
+
 
 .borderpane{
     -fx-background-color: transparent;
@@ -22,7 +36,7 @@
 	-fx-effect: dropshadow(gaussian, #b4d1f3, 3, 3, 0, 0);
 }
 .button,.menu-button,.toggle-button,.split-menu-button {
-	-fx-font-size: 14;
+	-fx-font-size: 17;
 	-fx-background-radius: 4;
 	-fx-border-radius: 4;
 	-fx-pref-height: 30;
@@ -226,6 +240,7 @@ VBox > .split-menu-button.last > .arrow-button {
 .split-menu-button.primary > .label,.split-menu-button.primary > .arrow-button {
 	-fx-border-color: #0062b8 #0062b8 #005299 #0062b8;
 	-fx-text-fill: white;
+	-fx-font-size: 20;
 }
 /*hover state*/
 .button.primary:hover,.menu-button.primary:hover,.toggle-button.primary:hover,
