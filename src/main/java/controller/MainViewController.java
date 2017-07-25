@@ -43,44 +43,42 @@ public class MainViewController {
     @FXML
     private TreeView<String> infostree;
 
-    @FXML private Label balance;
+    @FXML
+    private Label balance;
 
+    @FXML
+    private ListView<Product> productsListView;
 
-    @FXML private ListView<Product> productsListView;
-    @FXML private ListView<Product> basketlistView;
-    @FXML private Tab buyTab;
+    @FXML
+    private ListView<Product> basketlistView;
 
-    @FXML private ProgressIndicator progress;
+    @FXML
+    private Tab buyTab;
 
-    @FXML private Button eraseButton;
+    @FXML
+    private ProgressIndicator progress;
 
-    @FXML private Label totalLabel;
+    @FXML
+    private Button eraseButton;
 
+    @FXML
+    private Label totalLabel;
 
-    private ArrayList<Product> bascket = new ArrayList<>();
-
+    private ObservableList<Product> productsObservableList = FXCollections.observableArrayList();
+    private ObservableList<Product> bascket = FXCollections.observableArrayList();
     private BigDecimal total = BigDecimal.valueOf(0.00);
 
-    private void productsUpdate(){
+    private void productsUpdate() {
         progress.setVisible(true);
+
         RestClient.getInstance().getClient().register(new CookieClientRequestFilter(Session.getInstance().getCookies().get("JSESSIONID")));
         ProductsInterface proxy = RestClient.getInstance().getTarget().proxy(ProductsInterface.class);
 
         try {
-            List<Product> products = proxy.getProducts();
-
-
-            Platform.runLater(() -> {
-
-                productsListView.setItems(FXCollections.observableList(products));
-
-                productsListView.setCellFactory(list -> new ProductsListCell());
-
-                progress.setVisible(false);
-            });
-        } catch (Exception e)
-        {
-            Platform.runLater(() -> Popup.showErrorAlert("!! Error !!","Loading Products Error", e));
+            productsObservableList.setAll(proxy.getProducts());
+            Platform.runLater(() -> progress.setVisible(false));
+        } catch (Exception e) {
+            Platform.runLater(() -> Popup.showErrorAlert("!! Error !!", "Loading Products Error", e));
         }
     }
 
@@ -89,6 +87,11 @@ public class MainViewController {
     }
 
     public void initView(final LoginManager loginManager) {
+
+        productsListView.setCellFactory(list -> new ProductsListCell());
+        basketlistView.setCellFactory(list2 -> new ProductsListCell());
+        productsListView.setItems(productsObservableList);
+        basketlistView.setItems(bascket);
 
         new Thread(this::productsUpdate).start();
 
@@ -100,7 +103,6 @@ public class MainViewController {
         TreeItem<String> emailItem = new TreeItem<>("Email");
         TreeItem<String> rfidItem = new TreeItem<>("RFID");
         TreeItem<String> roleItem = new TreeItem<>("Role");
-
 
         list.add(nameItem);
         list.add(emailItem);
@@ -139,18 +141,15 @@ public class MainViewController {
 
 
         logoutButton.setOnAction(event -> {
-
             loginManager.logout();
-
             if (Session.getInstance().getCookies() == null) timer.cancel();
-
         });
 
         buyTab.setOnSelectionChanged((Event event) -> new Thread(this::productsUpdate).start());
 
         productsListView.setOnMouseClicked(mouseEvent -> {
-            if(mouseEvent.getButton().equals(MouseButton.PRIMARY)){
-                if(mouseEvent.getClickCount() == 2){
+            if (mouseEvent.getButton().equals(MouseButton.PRIMARY)) {
+                if (mouseEvent.getClickCount() == 2) {
 
                     Product product = productsListView.getItems().get(productsListView.getSelectionModel().getSelectedIndex());
 
@@ -158,35 +157,26 @@ public class MainViewController {
 
                     bascket.add(product);
 
-                    basketlistView.setItems(FXCollections.observableList(bascket));
-
-                    basketlistView.setCellFactory(list2 -> new ProductsListCell());
-
-                    totalLabel.setText("CHF "+ total.toString());
+                    totalLabel.setText("CHF " + total.toString());
                 }
             }
         });
 
         eraseButton.setOnAction(event -> {
             bascket.clear();
-            basketlistView.setItems(FXCollections.observableList(bascket));
             total = BigDecimal.valueOf(0.00);
-            totalLabel.setText("CHF "+ total.toString());
+            totalLabel.setText("CHF " + total.toString());
         });
 
         basketlistView.setOnMouseClicked(mouseEvent -> {
-            if(mouseEvent.getButton().equals(MouseButton.PRIMARY)){
-                if(mouseEvent.getClickCount() == 2){
+            if (mouseEvent.getButton().equals(MouseButton.PRIMARY)) {
+                if (mouseEvent.getClickCount() == 2) {
 
                     total = total.subtract(basketlistView.getItems().get(basketlistView.getSelectionModel().getSelectedIndex()).getPrice());
 
                     bascket.remove(basketlistView.getSelectionModel().getSelectedIndex());
 
-                    basketlistView.setItems(FXCollections.observableList(bascket));
-
-                    basketlistView.setCellFactory(list2 -> new ProductsListCell());
-
-                    totalLabel.setText("CHF "+ total.toString());
+                    totalLabel.setText("CHF " + total.toString());
                 }
             }
         });
