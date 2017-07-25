@@ -4,8 +4,12 @@
     -fx-background-image: url("background.jpg");
 }
 
+.tree-view{
+	-fx-font-size: 20;
+}
+
 .cache-list-name {
-    -fx-font-size: 1.2em;
+    -fx-font-size: 15;
     -fx-font-weight: bold;
 }
 
@@ -16,6 +20,10 @@
 
 .cache-list-found .cache-list-icon {
     -fx-text-fill: #669900;
+}
+
+.cache-list-dt{
+	-fx-font-size: 15;
 }
 
 

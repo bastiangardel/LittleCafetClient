@@ -19,7 +19,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane stylesheets="@mainview.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainViewController">
+<AnchorPane stylesheets="@mainview.css" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainViewController">
    <children>
       <BorderPane prefHeight="544.0" prefWidth="698.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <top>
@@ -56,7 +56,7 @@
                                              <children>
                                                 <BorderPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                    <center>
-                                                      <ListView  fx:id="basketlistView" prefHeight="183.0" prefWidth="536.0" />
+                                                      <ListView fx:id="basketlistView" prefHeight="183.0" prefWidth="536.0" />
                                                    </center>
                                                    <right>
                                                       <AnchorPane BorderPane.alignment="CENTER">
@@ -71,6 +71,13 @@
                                                          </buttons>
                                                       </ButtonBar>
                                                    </bottom>
+                                                   <top>
+                                                      <Label fx:id="totalLabel" text="CHF 0.00" BorderPane.alignment="CENTER">
+                                                         <font>
+                                                            <Font size="33.0" />
+                                                         </font>
+                                                      </Label>
+                                                   </top>
                                                 </BorderPane>
                                              </children>
                                           </AnchorPane>
@@ -88,7 +95,7 @@
                                           <Pagination pageCount="5" prefHeight="62.0" prefWidth="698.0" BorderPane.alignment="CENTER" />
                                        </bottom>
                                        <center>
-                                          <ListView  prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+                                          <ListView prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
                                        </center>
                                     </BorderPane>
                                  </children>

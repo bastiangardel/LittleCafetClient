@@ -24,7 +24,9 @@ import java.math.BigDecimal;
  */
 public class Product {
     private String name;
+    private String icon;
     private BigDecimal price;
+    private String description;
 
 
     public String getName() {
@@ -43,8 +45,20 @@ public class Product {
         this.price = price;
     }
 
-    @Override
-    public String toString() {
-        return name + ": CHF " + price;
+    public String getIcon() {
+        return icon;
     }
+
+    public void setIcon(String icon) {
+        this.icon = icon;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
 }

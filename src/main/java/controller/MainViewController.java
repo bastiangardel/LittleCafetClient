@@ -25,6 +25,7 @@ import restclient.serviceinterfaces.UsersInterface;
 import tools.Popup;
 import tools.ProductsListCell;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
@@ -53,10 +54,12 @@ public class MainViewController {
 
     @FXML private Button eraseButton;
 
+    @FXML private Label totalLabel;
+
 
     private ArrayList<Product> bascket = new ArrayList<>();
 
-
+    private BigDecimal total = BigDecimal.valueOf(0.00);
 
     private void productsUpdate(){
         progress.setVisible(true);
@@ -149,11 +152,17 @@ public class MainViewController {
             if(mouseEvent.getButton().equals(MouseButton.PRIMARY)){
                 if(mouseEvent.getClickCount() == 2){
 
-                    bascket.add(productsListView.getItems().get(productsListView.getSelectionModel().getSelectedIndex()));
+                    Product product = productsListView.getItems().get(productsListView.getSelectionModel().getSelectedIndex());
+
+                    total = total.add(product.getPrice());
+
+                    bascket.add(product);
 
                     basketlistView.setItems(FXCollections.observableList(bascket));
 
                     basketlistView.setCellFactory(list2 -> new ProductsListCell());
+
+                    totalLabel.setText("CHF "+ total.toString());
                 }
             }
         });
@@ -161,6 +170,25 @@ public class MainViewController {
         eraseButton.setOnAction(event -> {
             bascket.clear();
             basketlistView.setItems(FXCollections.observableList(bascket));
+            total = BigDecimal.valueOf(0.00);
+            totalLabel.setText("CHF "+ total.toString());
+        });
+
+        basketlistView.setOnMouseClicked(mouseEvent -> {
+            if(mouseEvent.getButton().equals(MouseButton.PRIMARY)){
+                if(mouseEvent.getClickCount() == 2){
+
+                    total = total.subtract(basketlistView.getItems().get(basketlistView.getSelectionModel().getSelectedIndex()).getPrice());
+
+                    bascket.remove(basketlistView.getSelectionModel().getSelectedIndex());
+
+                    basketlistView.setItems(FXCollections.observableList(bascket));
+
+                    basketlistView.setCellFactory(list2 -> new ProductsListCell());
+
+                    totalLabel.setText("CHF "+ total.toString());
+                }
+            }
         });
     }
 }

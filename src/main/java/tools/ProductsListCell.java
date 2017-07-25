@@ -1,6 +1,10 @@
 package tools;
 
+import de.jensd.fx.glyphs.GlyphIcons;
+import de.jensd.fx.glyphs.GlyphsDude;
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import javafx.geometry.Insets;
+import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.layout.GridPane;
@@ -72,9 +76,9 @@ public class ProductsListCell extends ListCell<Product>
 
     private void addContent(Product product) {
         setText(null);
-        configureIcon();
+        icon.setText(GlyphsDude.createIcon(FontAwesomeIcon.valueOf(product.getIcon())).getText());
         name.setText(product.getName());
-        dt.setText("CHF " + product.getPrice());
+        dt.setText("CHF " + product.getPrice() + " : " + product.getDescription());
         setGraphic(grid);
     }
 
