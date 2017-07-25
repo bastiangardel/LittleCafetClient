@@ -20,116 +20,118 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane stylesheets="@mainview.css" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainViewController">
-   <children>
-      <BorderPane prefHeight="544.0" prefWidth="698.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <top>
-            <MenuBar prefWidth="698.0">
-              <menus>
-                <Menu mnemonicParsing="false" text="||| Session |||">
-                  <items>
-                    <MenuItem fx:id="logoutButton" mnemonicParsing="false" text="Logout" />
-                  </items>
-                </Menu>
-              </menus>
-               <BorderPane.margin>
-                  <Insets />
-               </BorderPane.margin>
-            </MenuBar>
-         </top>
-         <center>
-            <SplitPane dividerPositions="0.8505747126436781" BorderPane.alignment="CENTER">
-               <items>
-                  <TabPane prefHeight="234.0" prefWidth="738.0" tabClosingPolicy="UNAVAILABLE">
-                    <tabs>
-                        <Tab fx:id="buyTab" text="Buy">
-                           <content>
-                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="194.0" prefWidth="600.0">
-                                 <children>
-                                    <SplitPane dividerPositions="0.5217391304347826" orientation="VERTICAL" prefHeight="393.0" prefWidth="538.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                      <items>
-                                          <AnchorPane>
-                                             <children>
-                                                <ListView fx:id="productsListView" prefHeight="200.0" prefWidth="536.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                                             </children>
-                                          </AnchorPane>
-                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0">
-                                             <children>
-                                                <BorderPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                                   <center>
-                                                      <ListView fx:id="basketlistView" prefHeight="183.0" prefWidth="536.0" />
-                                                   </center>
-                                                   <right>
-                                                      <AnchorPane BorderPane.alignment="CENTER">
-                                                         <children>
-                                                            <Button mnemonicParsing="false" prefHeight="153.0" prefWidth="66.0" styleClass="primary" text="GO" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                                                         </children></AnchorPane>
-                                                   </right>
-                                                   <bottom>
-                                                      <ButtonBar BorderPane.alignment="CENTER">
-                                                         <buttons>
-                                                            <Button fx:id="eraseButton" mnemonicParsing="false" prefHeight="183.0" prefWidth="150.0" text="Erase Basket" ButtonBar.buttonData="LEFT" />
-                                                         </buttons>
-                                                      </ButtonBar>
-                                                   </bottom>
-                                                   <top>
-                                                      <Label fx:id="totalLabel" text="CHF 0.00" BorderPane.alignment="CENTER">
-                                                         <font>
-                                                            <Font size="33.0" />
-                                                         </font>
-                                                      </Label>
-                                                   </top>
+    <children>
+        <BorderPane prefHeight="544.0" prefWidth="698.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <top>
+                <MenuBar prefWidth="698.0">
+                    <menus>
+                        <Menu mnemonicParsing="false" text="||| Session |||">
+                            <items>
+                                <MenuItem fx:id="logoutButton" mnemonicParsing="false" text="Logout" />
+                            </items>
+                        </Menu>
+                    </menus>
+                    <BorderPane.margin>
+                        <Insets />
+                    </BorderPane.margin>
+                </MenuBar>
+            </top>
+            <center>
+                <SplitPane dividerPositions="0.8505747126436781" BorderPane.alignment="CENTER">
+                    <items>
+                        <TabPane prefHeight="234.0" prefWidth="738.0" tabClosingPolicy="UNAVAILABLE">
+                            <tabs>
+                                <Tab fx:id="buyTab" text="Buy">
+                                    <content>
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="194.0" prefWidth="600.0">
+                                            <children>
+                                                <SplitPane dividerPositions="0.5217391304347826" orientation="VERTICAL" prefHeight="393.0" prefWidth="538.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                    <items>
+                                                        <AnchorPane>
+                                                            <children>
+                                                                <ListView fx:id="productsListView" prefHeight="200.0" prefWidth="536.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                                            </children>
+                                                        </AnchorPane>
+                                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0">
+                                                            <children>
+                                                                <BorderPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                                    <center>
+                                                                        <ListView fx:id="basketlistView" prefHeight="183.0" prefWidth="536.0" />
+                                                                    </center>
+                                                                    <right>
+                                                                        <AnchorPane BorderPane.alignment="CENTER">
+                                                                            <children>
+                                                                                <Button fx:id="goButton" mnemonicParsing="false" prefHeight="153.0" prefWidth="66.0" styleClass="primary" text="GO" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                                                            </children>
+                                                                        </AnchorPane>
+                                                                    </right>
+                                                                    <bottom>
+                                                                        <ButtonBar BorderPane.alignment="CENTER">
+                                                                            <buttons>
+                                                                                <Button fx:id="eraseButton" mnemonicParsing="false" prefHeight="183.0" prefWidth="150.0" text="Erase Basket" ButtonBar.buttonData="LEFT" />
+                                                                            </buttons>
+                                                                        </ButtonBar>
+                                                                    </bottom>
+                                                                    <top>
+                                                                        <Label fx:id="totalLabel" text="CHF 0.00" BorderPane.alignment="CENTER">
+                                                                            <font>
+                                                                                <Font size="33.0" />
+                                                                            </font>
+                                                                        </Label>
+                                                                    </top>
+                                                                </BorderPane>
+                                                            </children>
+                                                        </AnchorPane>
+                                                    </items>
+                                                </SplitPane>
+                                            </children>
+                                        </AnchorPane>
+                                    </content>
+                                </Tab>
+                                <Tab text="History">
+                                    <content>
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                            <children>
+                                                <BorderPane layoutX="206.0" layoutY="216.0" prefHeight="474.0" prefWidth="698.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                    <bottom>
+                                                        <Pagination pageCount="5" prefHeight="62.0" prefWidth="698.0" BorderPane.alignment="CENTER" />
+                                                    </bottom>
+                                                    <center>
+                                                        <ListView prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+                                                    </center>
                                                 </BorderPane>
-                                             </children>
-                                          </AnchorPane>
-                                      </items>
-                                    </SplitPane>
-                                 </children></AnchorPane>
-                           </content>
-                        </Tab>
-                      <Tab text="History">
-                        <content>
-                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                 <children>
-                                    <BorderPane layoutX="206.0" layoutY="216.0" prefHeight="474.0" prefWidth="698.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                       <bottom>
-                                          <Pagination pageCount="5" prefHeight="62.0" prefWidth="698.0" BorderPane.alignment="CENTER" />
-                                       </bottom>
-                                       <center>
-                                          <ListView prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
-                                       </center>
-                                    </BorderPane>
-                                 </children>
-                              </AnchorPane>
-                        </content>
-                      </Tab>
-                    </tabs>
-                  </TabPane>
-                  <BorderPane minWidth="200.0">
-                     <top>
-                        <AnchorPane BorderPane.alignment="CENTER">
-                           <children>
-                              <Label fx:id="balance" alignment="TOP_CENTER" prefHeight="30.0" prefWidth="150.0" text="CHF ----" textFill="#e80505" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                 <font>
-                                    <Font size="32.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </AnchorPane>
-                     </top>
-                     <center>
-                        <TreeView fx:id="infostree" prefHeight="200.0" prefWidth="172.0" BorderPane.alignment="CENTER" />
-                     </center>
-                  </BorderPane>
-               </items>
-            </SplitPane>
-         </center>
-         <bottom>
-            <VBox BorderPane.alignment="CENTER">
-               <children>
-                  <ProgressIndicator fx:id="progress" visible="false" />
-               </children>
-            </VBox>
-         </bottom>
-      </BorderPane>
-   </children>
+                                            </children>
+                                        </AnchorPane>
+                                    </content>
+                                </Tab>
+                            </tabs>
+                        </TabPane>
+                        <BorderPane minWidth="200.0">
+                            <top>
+                                <AnchorPane BorderPane.alignment="CENTER">
+                                    <children>
+                                        <Label fx:id="balance" alignment="TOP_CENTER" prefHeight="30.0" prefWidth="150.0" text="CHF ----" textFill="#e80505" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                            <font>
+                                                <Font size="32.0" />
+                                            </font>
+                                        </Label>
+                                    </children>
+                                </AnchorPane>
+                            </top>
+                            <center>
+                                <TreeView fx:id="infostree" prefHeight="200.0" prefWidth="172.0" BorderPane.alignment="CENTER" />
+                            </center>
+                        </BorderPane>
+                    </items>
+                </SplitPane>
+            </center>
+            <bottom>
+                <VBox BorderPane.alignment="CENTER">
+                    <children>
+                        <ProgressIndicator fx:id="progress" visible="false" />
+                    </children>
+                </VBox>
+            </bottom>
+        </BorderPane>
+    </children>
 </AnchorPane>

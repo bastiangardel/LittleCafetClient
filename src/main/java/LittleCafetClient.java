@@ -11,9 +11,13 @@ import java.io.IOException;
 public class LittleCafetClient extends Application {
 
 
-    public static void main(String[] args) { launch(args); }
-    @Override public void start(Stage stage) throws IOException {
-        Scene scene = new Scene(new ScrollPane(),1000, 600);
+    public static void main(String[] args) {
+        launch(args);
+    }
+
+    @Override
+    public void start(Stage stage) throws IOException {
+        Scene scene = new Scene(new ScrollPane(), 1000, 600);
 
         LoginManager loginManager = new LoginManager(scene);
         loginManager.showLoginScreen();
@@ -26,7 +30,7 @@ public class LittleCafetClient extends Application {
 
 
     @Override
-    public void stop(){
+    public void stop() {
         Session.getInstance().logout();
     }
 }

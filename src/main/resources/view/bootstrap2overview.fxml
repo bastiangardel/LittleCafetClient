@@ -6,9 +6,9 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.web.HTMLEditor?>
 <?import java.lang.*?>
-<ScrollPane prefHeight="3000.0" prefViewportHeight="600.0" prefViewportWidth="800.0" prefWidth="1000.0"
-            style="-fx-background-color: white;" stylesheets="@bootstrap2.css" xmlns="http://javafx.com/javafx/8"
-            xmlns:fx="http://javafx.com/fxml/1">
+<ScrollPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="3000.0" prefViewportHeight="600.0" prefViewportWidth="800.0"
+            prefWidth="1000.0" style="-fx-background-color: white;" stylesheets="@bootstrap2.css"
+            xmlns="http://javafx.com/javafx/8">
     <contextMenu>
         <ContextMenu>
             <items>

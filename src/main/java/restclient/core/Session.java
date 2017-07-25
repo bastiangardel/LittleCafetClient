@@ -15,9 +15,11 @@ import java.util.Map;
  */
 public class Session {
 
-    private Map<String,NewCookie> cookies;
-
     private static Session ourInstance;
+    private Map<String, NewCookie> cookies;
+
+    private Session() {
+    }
 
     public static Session getInstance() {
 
@@ -28,14 +30,11 @@ public class Session {
         return ourInstance;
     }
 
-    private Session() {
-    }
-
     public Map<String, NewCookie> getCookies() {
         return cookies;
     }
 
-    public Boolean login (String username, String password){
+    public Boolean login(String username, String password) {
 
         int status = 0;
 
@@ -46,17 +45,18 @@ public class Session {
         credentialDTO.setUsername(username);
         credentialDTO.setPassword(password);
 
-        try{
+        try {
             Response response = proxy.authenticate(credentialDTO);
 
             status = response.getStatus();
 
             System.out.println("HTTP code: " + status);
 
-           cookies = response.getCookies();
+            cookies = response.getCookies();
 
-            switch (status){
-                case 200: break;
+            switch (status) {
+                case 200:
+                    break;
                 case 401:
                     Popup.showAlert(Alert.AlertType.INFORMATION,
                             "!! Access Deny!!",
@@ -73,34 +73,34 @@ public class Session {
 
             response.close();
 
-        } catch (Exception e)
-        {
+        } catch (Exception e) {
 
-            Platform.runLater(() -> Popup.showErrorAlert("!! Error !!","Authentication Error", e));
+            Platform.runLater(() -> Popup.showErrorAlert("!! Error !!", "Authentication Error", e));
 
         }
 
         return status == 200;
     }
 
-    public Boolean logout (){
+    public Boolean logout() {
 
         int status = 0;
 
-        if(cookies != null) {
+        if (cookies != null) {
 
             RestClient.getInstance().getClient().register(new CookieClientRequestFilter(cookies.get("JSESSIONID")));
             UsersInterface proxy = RestClient.getInstance().getTarget().proxy(UsersInterface.class);
 
-            try{
+            try {
                 Response response = proxy.logout();
 
                 status = response.getStatus();
 
                 System.out.println("HTTP code: " + status);
 
-                switch (status){
-                    case 200: break;
+                switch (status) {
+                    case 200:
+                        break;
                     case 401:
                         Popup.showAlert(Alert.AlertType.INFORMATION,
                                 "!! Logout Deny!!",
@@ -120,16 +120,13 @@ public class Session {
 
                 cookies = null;
 
-            } catch (Exception e)
-            {
+            } catch (Exception e) {
 
 
-                Popup.showErrorAlert("!! Error !!","Logout Error", e);
+                Popup.showErrorAlert("!! Error !!", "Logout Error", e);
             }
 
-        }
-        else
-        {
+        } else {
             status = 200;
         }
 

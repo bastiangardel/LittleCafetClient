@@ -8,12 +8,9 @@ import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.Event;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseButton;
-import javafx.scene.input.MouseEvent;
-import javafx.util.Callback;
 import login.LoginManager;
 import restclient.core.CookieClientRequestFilter;
 import restclient.core.RestClient;
@@ -21,16 +18,15 @@ import restclient.core.Session;
 import restclient.dto.Product;
 import restclient.dto.UserInfoDTO;
 import restclient.serviceinterfaces.ProductsInterface;
+import restclient.serviceinterfaces.TransactionsInterface;
 import restclient.serviceinterfaces.UsersInterface;
 import tools.Popup;
 import tools.ProductsListCell;
 
+import javax.ws.rs.core.Response;
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.stream.Collectors;
 
 /**
  * Controls the main application screen
@@ -64,6 +60,9 @@ public class MainViewController {
     @FXML
     private Label totalLabel;
 
+    @FXML
+    private Button goButton;
+
     private ObservableList<Product> productsObservableList = FXCollections.observableArrayList();
     private ObservableList<Product> bascket = FXCollections.observableArrayList();
     private BigDecimal total = BigDecimal.valueOf(0.00);
@@ -78,8 +77,56 @@ public class MainViewController {
             productsObservableList.setAll(proxy.getProducts());
             Platform.runLater(() -> progress.setVisible(false));
         } catch (Exception e) {
+            Platform.runLater(() -> progress.setVisible(false));
             Platform.runLater(() -> Popup.showErrorAlert("!! Error !!", "Loading Products Error", e));
+
         }
+    }
+
+    private void sendBuyRequest() {
+        progress.setVisible(true);
+
+        RestClient.getInstance().getClient().register(new CookieClientRequestFilter(Session.getInstance().getCookies().get("JSESSIONID")));
+        TransactionsInterface proxy = RestClient.getInstance().getTarget().proxy(TransactionsInterface.class);
+
+
+        try {
+            Response response = proxy.buy(bascket);
+
+            int status = response.getStatus();
+
+            System.out.println("HTTP code: " + status);
+
+            switch (status) {
+                case 200:
+                    break;
+                case 401:
+                    Popup.showAlert(Alert.AlertType.INFORMATION,
+                            "!! Access Deny!!",
+                            Integer.toString(status),
+                            response.getStatusInfo().getReasonPhrase());
+                    break;
+                default:
+                    Popup.showAlert(Alert.AlertType.ERROR,
+                            "!! Purchase Failure!!",
+                            Integer.toString(status),
+                            response.getStatusInfo().getReasonPhrase());
+
+            }
+
+            response.close();
+        } catch (Exception e) {
+
+            Platform.runLater(() -> Popup.showErrorAlert("!! Error !!", "Purchase Error", e));
+        }
+        Platform.runLater(() -> progress.setVisible(false));
+        Platform.runLater(() -> {
+            total = BigDecimal.valueOf(0.00);
+            totalLabel.setText("CHF " + total.toString());
+            bascket.clear();
+        });
+
+
     }
 
 
@@ -179,6 +226,10 @@ public class MainViewController {
                     totalLabel.setText("CHF " + total.toString());
                 }
             }
+        });
+
+        goButton.setOnAction(event -> {
+            new Thread(this::sendBuyRequest).start();
         });
     }
 }

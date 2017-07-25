@@ -14,7 +14,9 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/** Manages control flow for logins */
+/**
+ * Manages control flow for logins
+ */
 public class LoginManager {
     private Scene scene;
 
@@ -35,7 +37,7 @@ public class LoginManager {
      * Will show the login application screen.
      */
     public void logout() {
-        if(Session.getInstance().logout()) showLoginScreen();
+        if (Session.getInstance().logout()) showLoginScreen();
     }
 
     public void showLoginScreen() {

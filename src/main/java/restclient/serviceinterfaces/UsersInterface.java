@@ -15,7 +15,7 @@ public interface UsersInterface {
 
     @POST
     @Path("/auth")
-    @Consumes({ MediaType.APPLICATION_JSON })
+    @Consumes({MediaType.APPLICATION_JSON})
     Response authenticate(CredentialDTO credentials);
 
 
@@ -25,7 +25,7 @@ public interface UsersInterface {
 
     @GET
     @Path("/info")
-    @Produces({ MediaType.APPLICATION_JSON })
+    @Produces({MediaType.APPLICATION_JSON})
     UserInfoDTO getInfo();
 
 

@@ -1,10 +1,8 @@
 package tools;
 
-import de.jensd.fx.glyphs.GlyphIcons;
 import de.jensd.fx.glyphs.GlyphsDude;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import javafx.geometry.Insets;
-import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.layout.GridPane;
@@ -12,8 +10,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import restclient.dto.Product;
 
-public class ProductsListCell extends ListCell<Product>
-{
+public class ProductsListCell extends ListCell<Product> {
     private static final String CACHE_LIST_FOUND_CLASS = "cache-list-found";
     private static final String CACHE_LIST_NOT_FOUND_CLASS = "cache-list-not-found";
     private static final String CACHE_LIST_NAME_CLASS = "cache-list-name";
@@ -24,13 +21,14 @@ public class ProductsListCell extends ListCell<Product>
     private GridPane grid = new GridPane();
     private Label icon = new Label();
     private Label name = new Label();
-    private Label dt = new Label();
+    private Label price = new Label();
+    private Label description = new Label();
 
     public ProductsListCell() {
         configureGrid();
         configureIcon();
         configureName();
-        configureDifficultyTerrain();
+        configureprice();
         addControlsToGrid();
     }
 
@@ -49,14 +47,15 @@ public class ProductsListCell extends ListCell<Product>
         name.getStyleClass().add(CACHE_LIST_NAME_CLASS);
     }
 
-    private void configureDifficultyTerrain() {
-        dt.getStyleClass().add(CACHE_LIST_DT_CLASS);
+    private void configureprice() {
+        price.getStyleClass().add(CACHE_LIST_DT_CLASS);
     }
 
     private void addControlsToGrid() {
-        grid.add(icon, 0, 0, 1, 2);
+        grid.add(icon, 0, 0, 1, 3);
         grid.add(name, 1, 0);
-        grid.add(dt, 1, 1);
+        grid.add(price, 1, 2);
+        grid.add(description,1,1);
     }
 
     @Override
@@ -78,7 +77,8 @@ public class ProductsListCell extends ListCell<Product>
         setText(null);
         icon.setText(GlyphsDude.createIcon(FontAwesomeIcon.valueOf(product.getIcon())).getText());
         name.setText(product.getName());
-        dt.setText("CHF " + product.getPrice() + " : " + product.getDescription());
+        price.setText("CHF " + product.getPrice());
+        description.setText(product.getDescription());
         setGraphic(grid);
     }
 

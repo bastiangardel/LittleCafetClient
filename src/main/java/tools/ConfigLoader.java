@@ -16,28 +16,14 @@ import java.util.List;
  */
 public class ConfigLoader {
 
-    private HashMap<String,String> config;
-
     private static ConfigLoader ourInstance;
-
-    public static ConfigLoader getInstance(){
-
-        if (ourInstance == null)
-            ourInstance = new ConfigLoader();
-
-        return ourInstance;
-    }
-
-    public HashMap<String, String> getConfig() {
-        return config;
-    }
+    private HashMap<String, String> config;
 
     private ConfigLoader() {
 
         config = new HashMap<>();
 
         SAXBuilder sxb = new SAXBuilder();
-
 
 
         try {
@@ -49,21 +35,33 @@ public class ConfigLoader {
 
             Iterator i = listconfig.iterator();
 
-            while(i.hasNext()) {
+            while (i.hasNext()) {
                 Element courant = (Element) i.next();
 
                 config.put(courant.getName(), courant.getText());
 
             }
 
-        } catch (JDOMException  | IOException e) {
+        } catch (JDOMException | IOException e) {
 
-            Popup.showErrorAlert("!! Error !!","Loading Config Error", e);
+            Popup.showErrorAlert("!! Error !!", "Loading Config Error", e);
 
             System.exit(1);
         }
 
 
+    }
+
+    public static ConfigLoader getInstance() {
+
+        if (ourInstance == null)
+            ourInstance = new ConfigLoader();
+
+        return ourInstance;
+    }
+
+    public HashMap<String, String> getConfig() {
+        return config;
     }
 
 }

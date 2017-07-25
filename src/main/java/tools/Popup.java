@@ -15,7 +15,7 @@ import java.io.StringWriter;
  */
 public class Popup {
 
-    static public void showErrorAlert(String title, String header, Exception e){
+    static public void showErrorAlert(String title, String header, Exception e) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle(title);
         alert.setHeaderText(header);
@@ -49,7 +49,7 @@ public class Popup {
         alert.showAndWait();
     }
 
-    static public void showAlert(Alert.AlertType type, String title, String header, String content){
+    static public void showAlert(Alert.AlertType type, String title, String header, String content) {
 
         Platform.runLater(() -> {
             Alert alert = new Alert(type);
