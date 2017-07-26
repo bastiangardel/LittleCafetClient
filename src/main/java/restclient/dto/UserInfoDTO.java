@@ -1,6 +1,8 @@
 package restclient.dto;
 
 
+import java.math.BigDecimal;
+
 /**
  * Created by bastiangardel on 01.07.17.
  * <p>
@@ -24,7 +26,8 @@ package restclient.dto;
 public class UserInfoDTO {
     private String username;
     private String name;
-    private double solde;
+    private BigDecimal solde;
+    private String role;
 
 
     public String getUsername() {
@@ -35,11 +38,11 @@ public class UserInfoDTO {
         this.username = username;
     }
 
-    public double getSolde() {
+    public BigDecimal getSolde() {
         return solde;
     }
 
-    public void setSolde(double solde) {
+    public void setSolde(BigDecimal solde) {
         this.solde = solde;
     }
 
@@ -49,5 +52,13 @@ public class UserInfoDTO {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 }

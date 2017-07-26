@@ -18,4 +18,5 @@ public interface TransactionsInterface {
     @Path("/buy")
     @Consumes({MediaType.APPLICATION_JSON})
     Response buy(List<Product> productsList);
+
 }

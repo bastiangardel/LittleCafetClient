@@ -174,7 +174,7 @@ public class MainViewController {
                     emailItem.getChildren().clear();
                     emailItem.getChildren().add(new TreeItem<>(userInfoDTO.getUsername()));
                     roleItem.getChildren().clear();
-                    roleItem.getChildren().add(new TreeItem<>("---"));
+                    roleItem.getChildren().add(new TreeItem<>(userInfoDTO.getRole()));
                     rfidItem.getChildren().clear();
                     rfidItem.getChildren().add(new TreeItem<>("---"));
 
