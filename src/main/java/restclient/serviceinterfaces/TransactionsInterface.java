@@ -1,6 +1,5 @@
 package restclient.serviceinterfaces;
-
-import restclient.dto.CredentialDTO;
+import restclient.dto.PageTransactionDTO;
 import restclient.dto.Product;
 
 import javax.ws.rs.*;
@@ -18,5 +17,13 @@ public interface TransactionsInterface {
     @Path("/buy")
     @Consumes({MediaType.APPLICATION_JSON})
     Response buy(List<Product> productsList);
+
+
+
+    @GET
+    @Path("/list")
+    @Consumes({MediaType.APPLICATION_JSON})
+    PageTransactionDTO getTransactionsList(@QueryParam(value = "page") int page,
+                                           @QueryParam(value = "count") int size);
 
 }

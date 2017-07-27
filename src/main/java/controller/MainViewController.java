@@ -63,6 +63,9 @@ public class MainViewController {
     @FXML
     private Button goButton;
 
+    @FXML
+    private Tab historyTab;
+
     private ObservableList<Product> productsObservableList = FXCollections.observableArrayList();
     private ObservableList<Product> bascket = FXCollections.observableArrayList();
     private BigDecimal total = BigDecimal.valueOf(0.00);
@@ -193,6 +196,10 @@ public class MainViewController {
         });
 
         buyTab.setOnSelectionChanged((Event event) -> new Thread(this::productsUpdate).start());
+
+        historyTab.setOnSelectionChanged(event -> {
+
+        });
 
         productsListView.setOnMouseClicked(mouseEvent -> {
             if (mouseEvent.getButton().equals(MouseButton.PRIMARY)) {
